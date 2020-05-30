@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Posts</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_details">Details</string>
+
+    <string name="fragment_timeout_message">Timeout occurred</string>
+    <string name="fragment_timeout_retry">Retry</string>
+    <string name="fragment_timeout_cancel">Cancel</string>
+
+    <!-- error handling -->
+    <string name="general_error_message">Something went wrong</string>
+
+    <string name="no_title">Title unavailable</string>
+    <string name="no_body">Body unavailable</string>
+
+    <!-- content descriptions -->
+    <string name="post_content_description">Post</string>
+    <string name="backdrop_content_description">Backdrop</string>
+</resources>
