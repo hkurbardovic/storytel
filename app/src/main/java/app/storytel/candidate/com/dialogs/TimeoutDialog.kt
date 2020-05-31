@@ -19,14 +19,14 @@ class TimeoutDialog : DialogFragment() {
             R.style.ThemeOverlay_MaterialComponents_Dialog_Alert
         )
 
-//        builder.setTitle(context.getString(R.string.dialog_timeout_title))
-//        builder.setMessage(context.getString(R.string.dialog_timeout_message))
-//
-//        builder.setPositiveButton(context.getString(R.string.dialog_timeout_positive_button)) { _, _ ->
-//            (context as ClickListener).onRetryClicked()
-//        }
-//
-//        builder.setNegativeButton(context.getString(R.string.dialog_timeout_negative_button), null)
+        builder.setTitle(context.getString(R.string.dialog_timeout_title))
+        builder.setMessage(context.getString(R.string.dialog_timeout_message))
+
+        builder.setPositiveButton(context.getString(R.string.dialog_timeout_positive_button)) { _, _ ->
+            (context as ClickListener).onRetryClicked()
+        }
+
+        builder.setNegativeButton(context.getString(R.string.dialog_timeout_negative_button), null)
 
         return builder.create()
     }

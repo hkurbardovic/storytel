@@ -15,6 +15,8 @@ class DetailsViewModel @Inject constructor(private val repository: DetailsReposi
 
     private val detailsDataMutableLiveData = MutableLiveData<DetailsData?>()
 
+    private val isFabVisibleMutableLiveData = MutableLiveData(true)
+
     val firstCommentLiveData = repository.firstCommentLiveData
 
     val secondCommentLiveData = repository.secondCommentLiveData
@@ -29,6 +31,7 @@ class DetailsViewModel @Inject constructor(private val repository: DetailsReposi
 
     val detailsDataLiveData: LiveData<DetailsData?> = detailsDataMutableLiveData
 
+    val isFabVisibleLiveData: LiveData<Boolean> = isFabVisibleMutableLiveData
 
     fun getComments(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -38,5 +41,9 @@ class DetailsViewModel @Inject constructor(private val repository: DetailsReposi
 
     fun postDetailsData(value: DetailsData) {
         detailsDataMutableLiveData.postValue(value)
+    }
+
+    fun postIsFabVisible(value: Boolean) {
+        isFabVisibleMutableLiveData.value = value
     }
 }

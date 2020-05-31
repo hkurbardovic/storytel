@@ -1,5 +1,5 @@
 package app.storytel.candidate.com.base
 
-import dagger.android.support.DaggerFragment
+import app.storytel.candidate.com.di.DaggerFragment
 
 abstract class BaseFragment : DaggerFragment()

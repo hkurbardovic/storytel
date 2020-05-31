@@ -10,7 +10,6 @@ import app.storytel.candidate.com.network.models.PhotoSchema
 import app.storytel.candidate.com.network.models.PostSchema
 import app.storytel.candidate.com.utilities.Event
 import java.net.SocketTimeoutException
-import java.util.concurrent.TimeoutException
 import javax.inject.Inject
 
 class ScrollingRepositoryImpl @Inject constructor(
@@ -52,10 +51,10 @@ class ScrollingRepositoryImpl @Inject constructor(
                     context.getString(R.string.general_error_message)
                 )
             }
-        } catch (e: TimeoutException) {
+        } catch (e: SocketTimeoutException) {
             e.printStackTrace()
             isTimeoutMutableLiveData.postValue(Event(true))
-        } catch (e: SocketTimeoutException) {
+        } catch (e: Exception) {
             e.printStackTrace()
             handleException(
                 errorMessageMutableLiveData,

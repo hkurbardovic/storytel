@@ -5,9 +5,9 @@ import android.os.Bundle
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import app.storytel.candidate.com.R
+import app.storytel.candidate.com.di.DaggerAppCompatActivity
 import app.storytel.candidate.com.utilities.inTransaction
 import com.google.android.material.snackbar.Snackbar
-import dagger.android.support.DaggerAppCompatActivity
 
 abstract class BaseActivity : DaggerAppCompatActivity() {
 

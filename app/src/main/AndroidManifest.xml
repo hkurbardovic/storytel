@@ -31,5 +31,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".scrolling.ScrollingActivity" />
         </activity>
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".scrolling.ScrollingActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".scrolling.ScrollingActivity" />
+        </activity>
     </application>
 </manifest>

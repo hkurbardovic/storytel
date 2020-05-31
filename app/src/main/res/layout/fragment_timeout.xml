@@ -16,7 +16,7 @@
         android:background="?android:colorBackground"
         android:clickable="true"
         android:focusable="true"
-        android:padding="@dimen/fragment_padding"
+        android:padding="@dimen/medium_padding"
         tools:context=".fragments.TimeoutFragment">
 
         <com.google.android.material.textview.MaterialTextView

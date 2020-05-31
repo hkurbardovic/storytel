@@ -168,10 +168,12 @@
         </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
             android:src="@drawable/ic_discuss"
+            android:visibility="@{viewModel.isFabVisibleLiveData().booleanValue() ? View.VISIBLE : View.GONE}"
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|right|end" />
 
@@ -186,7 +188,7 @@
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center"
             android:visibility="@{viewModel.isLoadingLiveData() ? View.VISIBLE : View.GONE}" />
 
         <FrameLayout

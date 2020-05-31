@@ -1,8 +1,9 @@
 package app.storytel.candidate.com.dialogs
 
 import androidx.fragment.app.FragmentManager
+import javax.inject.Inject
 
-class DialogManager {
+class DialogManager @Inject constructor() {
 
     private var timeoutDialog: TimeoutDialog? = null
 

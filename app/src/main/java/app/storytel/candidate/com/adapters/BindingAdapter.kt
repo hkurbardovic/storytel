@@ -19,7 +19,7 @@ fun bindPostBody(view: TextView, value: String?) {
 @BindingAdapter("imageFromUrl")
 fun bindImageFromUrl(view: ImageView, value: String?) {
     if (value == null) return
-    Glide.with(view.context).load("$value.png").into(view)
+    Glide.with(view.context).load(value).into(view)
 }
 
 @BindingAdapter(value = ["detailsTitle", "detailsBody"])
