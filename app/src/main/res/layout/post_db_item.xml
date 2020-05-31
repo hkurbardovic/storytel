@@ -7,7 +7,7 @@
 
         <variable
             name="post"
-            type="app.storytel.candidate.com.database.models.Post" />
+            type="app.storytel.haris.com.database.models.Post" />
 
         <variable
             name="thumbnailUrl"

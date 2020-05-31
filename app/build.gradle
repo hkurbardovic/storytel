@@ -10,7 +10,7 @@ android {
     compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
     defaultConfig {
-        applicationId "app.storytel.candidate.com"
+        applicationId "app.storytel.haris.com"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.compileSdkVersion
         versionCode 1
