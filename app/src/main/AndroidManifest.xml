@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="app.storytel.candidate.com">
+    package="app.storytel.haris.com">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name="app.storytel.candidate.com.app.StorytelApp"
+        android:name=".app.StorytelApp"
         android:allowBackup="true"
         android:fullBackupContent="@xml/denali_backup_rules"
         android:icon="@mipmap/ic_launcher"

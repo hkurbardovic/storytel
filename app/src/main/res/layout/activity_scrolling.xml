@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="app.storytel.candidate.com.scrolling.viewmodels.ScrollingViewModel" />
+            type="app.storytel.haris.com.scrolling.viewmodels.ScrollingViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
