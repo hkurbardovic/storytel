@@ -1,6 +1,5 @@
 package app.storytel.candidate.com.database
 
-import app.storytel.candidate.com.network.models.PhotoSchema
 import app.storytel.candidate.com.network.models.PostSchema
 import javax.inject.Inject
 
@@ -11,16 +10,6 @@ class DatabaseHandler @Inject constructor(private val database: StorytelDatabase
             for (post in nonNullablePosts) {
                 post?.toPost()?.let { nonNullablePost ->
                     database.postDao().insertPost(nonNullablePost)
-                }
-            }
-        }
-    }
-
-    fun insertPhotosDatabase(photos: List<PhotoSchema?>?) {
-        photos?.let { nonNullablePhotos ->
-            for (photo in nonNullablePhotos) {
-                photo?.toPhoto()?.let { nonNullablePhoto ->
-                    database.postDao().insertPhoto(nonNullablePhoto)
                 }
             }
         }

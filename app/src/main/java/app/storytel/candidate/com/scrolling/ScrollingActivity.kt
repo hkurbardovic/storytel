@@ -8,7 +8,7 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
 import app.storytel.candidate.com.R
-import app.storytel.candidate.com.adapters.PostAdapter
+import app.storytel.candidate.com.adapters.PostDbAdapter
 import app.storytel.candidate.com.base.BaseActivity
 import app.storytel.candidate.com.commands.AddFragmentCommand
 import app.storytel.candidate.com.commands.LaunchActivityCommand
@@ -52,7 +52,7 @@ class ScrollingActivity : BaseActivity(), TimeoutDialog.ClickListener,
 
         setSupportActionBar(binding.toolbar)
 
-        val adapter = PostAdapter(this)
+        val adapter = PostDbAdapter(this)
         binding.contentScrolling.recyclerView.adapter = adapter
 
         observeLiveData(binding, adapter)
@@ -100,22 +100,13 @@ class ScrollingActivity : BaseActivity(), TimeoutDialog.ClickListener,
         showMessage(getString(R.string.no_internet_connection), binding.coordinator)
     }
 
-    private fun observeLiveData(binding: ActivityScrollingBinding, adapter: PostAdapter) {
+    private fun observeLiveData(binding: ActivityScrollingBinding, adapter: PostDbAdapter) {
         scrollingViewModel.postsLiveData.observe(this) {
-            if (it == null) return@observe
-            val photos = scrollingViewModel.photosLiveData.value
-            if (photos != null && photos.isNotEmpty()) {
-                adapter.setPhotos(photos)
-                adapter.submitList(it)
-            }
+            adapter.submitList(it)
         }
         scrollingViewModel.photosLiveData.observe(this) {
             if (it == null) return@observe
-            val posts = scrollingViewModel.postsLiveData.value
-            if (posts != null && posts.isNotEmpty()) {
-                adapter.setPhotos(it)
-                adapter.submitList(posts)
-            }
+            adapter.setPhotos(it)
         }
         scrollingViewModel.errorMessageLiveData.observe(this) {
             if (it == null || it.hasBeenHandled) return@observe

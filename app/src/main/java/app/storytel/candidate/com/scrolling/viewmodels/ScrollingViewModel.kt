@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.storytel.candidate.com.scrolling.repositories.ScrollingRepositoryImpl
+import app.storytel.candidate.com.scrolling.repositories.ScrollingRepositoryDbImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class ScrollingViewModel @Inject constructor(private val repository: ScrollingRepositoryImpl) :
+class ScrollingViewModel @Inject constructor(private val repository: ScrollingRepositoryDbImpl) :
     ViewModel() {
 
     private val isFabVisibleMutableLiveData = MutableLiveData(true)

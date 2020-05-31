@@ -4,20 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import app.storytel.candidate.com.database.daos.PhotoDao
 import app.storytel.candidate.com.database.daos.PostDao
-import app.storytel.candidate.com.database.models.Photo
 import app.storytel.candidate.com.database.models.Post
 
 /**
  * The Room database for this app
  */
-@Database(entities = [Post::class, Photo::class], version = 1, exportSchema = false)
+@Database(entities = [Post::class], version = 1, exportSchema = false)
 abstract class StorytelDatabase : RoomDatabase() {
 
     abstract fun postDao(): PostDao
-
-    abstract fun photoDao(): PhotoDao
 
     companion object {
 
