@@ -11,7 +11,7 @@ class DialogManager @Inject constructor() {
 
     fun showTimeoutDialog(fragmentManager: FragmentManager) {
         val retryDialog = timeoutDialog ?: TimeoutDialog.newInstance()
-        if (retryDialog.isAdded) return
+        if (retryDialog.dialog?.isShowing == true) return
 
         retryDialog.show(fragmentManager, TimeoutDialog.TAG)
 

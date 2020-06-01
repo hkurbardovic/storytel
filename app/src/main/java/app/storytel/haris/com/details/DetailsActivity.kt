@@ -40,6 +40,8 @@ class DetailsActivity : BaseActivity(), NetworkConnectivityChangeListener,
 
     private var id: Int? = null
 
+    private var isDialogShown = false
+
     override fun isDI() = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,6 +78,16 @@ class DetailsActivity : BaseActivity(), NetworkConnectivityChangeListener,
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean(IS_DIALOG_SHOWN_KEY, isDialogShown)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        isDialogShown = savedInstanceState.getBoolean(IS_DIALOG_SHOWN_KEY)
+    }
+
     override fun onAvailable() {
         loadData()
     }
@@ -86,6 +98,10 @@ class DetailsActivity : BaseActivity(), NetworkConnectivityChangeListener,
 
     override fun onRetryClicked() {
         loadData()
+    }
+
+    override fun onDismiss() {
+        isDialogShown = false
     }
 
     private fun observeLiveData() {
@@ -99,12 +115,17 @@ class DetailsActivity : BaseActivity(), NetworkConnectivityChangeListener,
             showMessage(it.getContentIfNotHandled(), binding.coordinator)
         }
         detailsViewModel.isTimeoutLiveData.observe(this) {
-            if (it == null || it.hasBeenHandled) return@observe
+            if (it == null || it.hasBeenHandled || it.getContentIfNotHandled() == false) return@observe
             if (PreferencesUtils.isTimeoutDialog(this)) {
-                dialogManager.showTimeoutDialog(supportFragmentManager)
+                if (!isDialogShown) {
+                    dialogManager.showTimeoutDialog(supportFragmentManager)
+                    isDialogShown = true
+                }
             } else {
                 AddFragmentCommand(this, TimeoutFragment.newInstance()).execute()
             }
+
+            detailsViewModel.resetIsTimeout()
         }
     }
 
@@ -138,5 +159,8 @@ class DetailsActivity : BaseActivity(), NetworkConnectivityChangeListener,
         const val TITLE_KEY = "app.storytel.haris.com.details.title"
         const val BODY_KEY = "app.storytel.haris.com.details.body"
         const val URL_KEY = "app.storytel.haris.com.details.url"
+
+        private const val IS_DIALOG_SHOWN_KEY =
+            "app.storytel.haris.com.details.is_dialog_shown_key"
     }
 }

@@ -77,4 +77,8 @@ class DetailsRepositoryImpl @Inject constructor(
             isLoadingMutableLiveData.postValue(false)
         }
     }
+
+    fun resetIsTimeout() {
+        isTimeoutMutableLiveData.postValue(Event(false))
+    }
 }

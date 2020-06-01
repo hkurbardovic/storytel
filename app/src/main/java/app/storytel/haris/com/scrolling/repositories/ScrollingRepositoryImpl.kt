@@ -96,4 +96,8 @@ class ScrollingRepositoryImpl @Inject constructor(
             isLoadingMutableLiveData.postValue(false)
         }
     }
+
+    fun resetIsTimeout() {
+        isTimeoutMutableLiveData.postValue(Event(false))
+    }
 }

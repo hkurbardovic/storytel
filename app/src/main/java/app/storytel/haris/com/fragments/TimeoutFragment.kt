@@ -4,15 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import app.storytel.haris.com.base.BaseFragment
 import app.storytel.haris.com.commands.BackPressedCommand
 import app.storytel.haris.com.commands.ClickCommands
 import app.storytel.haris.com.commands.RetryCommand
 import app.storytel.haris.com.databinding.FragmentTimeoutBinding
 import app.storytel.haris.com.details.DetailsActivity
+import app.storytel.haris.com.di.DaggerFragment
 import app.storytel.haris.com.scrolling.ScrollingActivity
 
-class TimeoutFragment : BaseFragment() {
+class TimeoutFragment : DaggerFragment() {
 
     override fun isDi() = false
 
