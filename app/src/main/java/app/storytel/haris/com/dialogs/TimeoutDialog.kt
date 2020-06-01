@@ -1,6 +1,7 @@
 package app.storytel.haris.com.dialogs
 
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import app.storytel.haris.com.R
@@ -10,6 +11,7 @@ class TimeoutDialog : DialogFragment() {
 
     interface ClickListener {
         fun onRetryClicked()
+        fun onDismiss()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -29,6 +31,12 @@ class TimeoutDialog : DialogFragment() {
         builder.setNegativeButton(context.getString(R.string.dialog_timeout_negative_button), null)
 
         return builder.create()
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        val context = context ?: return
+        (context as ClickListener).onDismiss()
     }
 
     companion object {

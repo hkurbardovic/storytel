@@ -46,4 +46,8 @@ class DetailsViewModel @Inject constructor(private val repository: DetailsReposi
     fun postIsFabVisible(value: Boolean) {
         isFabVisibleMutableLiveData.value = value
     }
+
+    fun resetIsTimeout() {
+        repository.resetIsTimeout()
+    }
 }

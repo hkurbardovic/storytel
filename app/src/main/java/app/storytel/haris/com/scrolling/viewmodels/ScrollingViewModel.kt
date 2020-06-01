@@ -38,4 +38,8 @@ class ScrollingViewModel @Inject constructor(private val repository: ScrollingRe
     fun postIsFabVisible(value: Boolean) {
         isFabVisibleMutableLiveData.value = value
     }
+
+    fun resetIsTimeout() {
+        repository.resetIsTimeout()
+    }
 }

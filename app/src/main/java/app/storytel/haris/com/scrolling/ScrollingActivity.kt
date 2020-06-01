@@ -36,6 +36,8 @@ class ScrollingActivity : BaseActivity(), TimeoutDialog.ClickListener,
     @Inject
     lateinit var scrollingViewModelFactory: ScrollingViewModelFactory
 
+    private var isDialogShown = false
+
     private val scrollingViewModel: ScrollingViewModel by viewModels {
         scrollingViewModelFactory
     }
@@ -88,8 +90,22 @@ class ScrollingActivity : BaseActivity(), TimeoutDialog.ClickListener,
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean(IS_DIALOG_SHOWN_KEY, isDialogShown)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        isDialogShown = savedInstanceState.getBoolean(IS_DIALOG_SHOWN_KEY)
+    }
+
     override fun onRetryClicked() {
         scrollingViewModel.getPostsAndPhotos()
+    }
+
+    override fun onDismiss() {
+        isDialogShown = false
     }
 
     override fun onAvailable() {
@@ -122,12 +138,17 @@ class ScrollingActivity : BaseActivity(), TimeoutDialog.ClickListener,
             showMessage(it.getContentIfNotHandled(), binding.coordinator)
         }
         scrollingViewModel.isTimeoutLiveData.observe(this) {
-            if (it == null || it.hasBeenHandled) return@observe
+            if (it == null || it.hasBeenHandled || it.getContentIfNotHandled() == false) return@observe
             if (PreferencesUtils.isTimeoutDialog(this)) {
-                dialogManager.showTimeoutDialog(supportFragmentManager)
+                if (!isDialogShown) {
+                    dialogManager.showTimeoutDialog(supportFragmentManager)
+                    isDialogShown = true
+                }
             } else {
                 AddFragmentCommand(this, TimeoutFragment.newInstance()).execute()
             }
+
+            scrollingViewModel.resetIsTimeout()
         }
     }
 
@@ -141,5 +162,10 @@ class ScrollingActivity : BaseActivity(), TimeoutDialog.ClickListener,
 
     fun hideFab() {
         scrollingViewModel.postIsFabVisible(false)
+    }
+
+    companion object {
+        private const val IS_DIALOG_SHOWN_KEY =
+            "app.storytel.haris.com.scrolling.is_dialog_shown_key"
     }
 }

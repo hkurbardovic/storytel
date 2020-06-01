@@ -10,6 +10,7 @@ import app.storytel.haris.com.network.ApiService
 import app.storytel.haris.com.network.models.PhotoSchema
 import app.storytel.haris.com.network.models.PostSchema
 import app.storytel.haris.com.utilities.Event
+import kotlinx.coroutines.delay
 import java.net.SocketTimeoutException
 import javax.inject.Inject
 
@@ -84,6 +85,7 @@ class ScrollingRepositoryImpl @Inject constructor(
             }
         } catch (e: SocketTimeoutException) {
             e.printStackTrace()
+            delay(2000)
             isTimeoutMutableLiveData.postValue(Event(true))
         } catch (e: Exception) {
             e.printStackTrace()
@@ -95,5 +97,9 @@ class ScrollingRepositoryImpl @Inject constructor(
         } finally {
             isLoadingMutableLiveData.postValue(false)
         }
+    }
+
+    fun resetIsTimeout() {
+        isTimeoutMutableLiveData.postValue(Event(false))
     }
 }
